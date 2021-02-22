@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const session = require("express-session");
 
-const KnexSessionStore = require("connect-session-knex");
+const KnexSessionStore = require("connect-session-knex")(session);
 
 const authRouter = require("./auth/auth-router.js");
 
@@ -35,7 +35,7 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use("/api/auth", authRouter);
+server.use("/api", authRouter);
 
 server.get("/", (req, res) => {
     res.json({

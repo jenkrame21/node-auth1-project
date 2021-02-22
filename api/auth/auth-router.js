@@ -16,7 +16,7 @@ router.post("/register", mw.checkPayload, mw.checkUserInDb, async (req, res) => 
         });
         res.status(201).json(newUser);
     } catch(error) {
-        res.status(500).json(`Server error: ${error}`);
+        res.status(500).json(`Server Register Error: ${error}`);
     }
 });
 

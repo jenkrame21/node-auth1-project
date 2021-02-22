@@ -21,7 +21,7 @@ const checkUserInDb = async (req, res, next) => {
             res.status(401).json("Username already exists");
         }
     } catch(error) {
-        res.status(500).json(`Server error: ${error}`);
+        res.status(500).json(`Server CheckUser Error: ${error}`);
     }
 };
 
@@ -37,7 +37,7 @@ const checkUserExists = async (req, res, next) => {
             res.status(401).json("Login Error: Check Credentials");
         }
     } catch(error) {
-        res.status(500).json(`Server error: ${error}`);
+        res.status(500).json(`Server UserExists error: ${error}`);
     }
 };
 
