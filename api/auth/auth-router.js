@@ -40,7 +40,7 @@ router.post("/login", mw.checkPayload, mw.checkUserExists, (req, res) => {
 
 // | GET    | /api/users    | If the user is logged in, respond with an array of all the users contained in the database. If the user is not logged in repond with the correct status code and the message: 'You shall not pass!'.
 
-router.get("/", (req, res) => {
+router.get("/", mw.restricted, (req, res) => {
     Users.find()
         .then((users) => {
             res.status(200).json(users);
