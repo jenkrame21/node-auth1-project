@@ -1,3 +1,6 @@
+const User = require("../users/users-model.js");
+
+// Auth-router.js
 const checkPayload = (req, res, next) => {
     const {username, password} = req.body;
     if(!username || !password) {
@@ -22,7 +25,7 @@ const checkUserInDb = async (req, res, next) => {
     }
 };
 
-const checkUserExists = (req, res, next) => {
+const checkUserExists = async (req, res, next) => {
     try {
         const rows = await User.findBy({
             username: req.body.username
@@ -38,8 +41,20 @@ const checkUserExists = (req, res, next) => {
     }
 };
 
+// Users-Router.js
+const restricted = (req, res, next) => {
+    if(req.session && req.session.user) {
+        next();
+    } else {
+        res.status(401).json({
+            message: "UNAUTHORIZED"
+        });
+    }
+};
+
 module.exports = {
     checkPayload,
     checkUserInDb,
-    checkUserExists
-}
+    checkUserExists,
+    restricted
+};
