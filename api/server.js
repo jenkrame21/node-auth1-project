@@ -19,7 +19,7 @@ const config = {
         httpOnly: true
     },
     resave:false,
-    saveUnitialized:false,
+    saveUninitialized:false,
 
     store: new KnexSessionStore({
         knex:require("../database/connection.js"),
